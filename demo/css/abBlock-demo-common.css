@@ -1,0 +1,60 @@
+@charset "utf-8";
+/* CSS Document */
+/** { margin:0; padding:0; }*/
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td { margin:0; padding:0; border:0; font-weight:inherit; font-style:inherit; font-size:100%; font-family:inherit; vertical-align:baseline; letter-spacing:.03em; }table { border-collapse:collapse; border-spacing:0; }p { word-wrap:break-word; }em, i { font-style:normal; }li { list-style:none; }img { border:0; vertical-align:top; }h1, h2, h3, h4, h5, h6 { font-weight:100; }.clearfix:before, .clearfix:after { content:""; display:table; }.clearfix:after { clear:both; }.clearfix { zoom:1; }.clear { height:0; clear:both; overflow:hidden; }
+body { background:#0c91e8; color:#fff; font:12px/18px "microsoft yahei", "SimHei", "SimSun"; -webkit-text-size-adjust:100%;min-width:1200px; letter-spacing:.03em; }
+ul,li { list-style:none; }
+p { word-wrap:break-word; }
+img { border:0; vertical-align:middle; }
+a { color:#eef7fe; text-decoration:none; } a:hover { color:#fff; text-decoration:none; }
+.cj-soft a { color:#183b52; font-style:normal; text-decoration:none; } .cj-soft a:hover { color:#4ad585; text-decoration:none; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.h100 { height:100px; overflow:hidden; }
+#tbox2 { width:42px; height:42px; margin:0 auto 0 auto; }#gotop2 { width:42px; height:42px; line-height:42px; font-weight:500; background:#3dc878; display:block; font-size:12px; font-style:italic; color:#fff; text-align:center; border-radius:50px; box-shadow: 0px 4px 10px 0px rgba(16,124,195,1);-webkit-box-shadow: 0px 4px 10px 0px rgba(16,124,195,1);-moz-box-shadow: 0px 4px 10px 0px rgba(16,124,195,1); }#gotop2:hover { background:#4ad585; color:#fff; }
+.demo-text { width:1200px; margin:0 auto; text-align:center; }
+.demo-text h6 { font-size:18px; height:60px; line-height:50px; color:#183b52; font-weight:700; font-style:italic; letter-spacing:.05em; /*padding:50px 0 0 0; border-top:1px solid #299fed; */ }
+.demo-text p { font-family: Consolas,"Courier New",Courier,mono,serif!important; color:#183b52; line-height:24px; font-size:12px; padding:0 200px 60px 200px; }	
+.demo-text p a { color:#183b52; } .demo-text p a:hover { color:#4ad585; text-decoration:underline; }
+	
+.demo-main { width:1200px; margin:0 auto; padding:100px 0 140px 0; }
+.demo-tit { text-align:center; font-size:24px; height:120px; line-height:120px; font-weight:bold; letter-spacing:.05em; font-style:italic; color:#183b52; }
+.demo-tit h2 { text-align:center; font-size:24px; height:120px; line-height:120px; font-weight:bold; letter-spacing:.05em; color:#183b52; }
+	.demo-tit h2 a { font-size:14px; height:120px; line-height:120px; font-weight:500; color:#065589; padding-left:20px; }.demo-tit h2 a:hover { color:#183b52; text-decoration:underline; }	
+	.demo-tit p a { font-size:24px; height:120px; line-height:120px; font-weight:bold; color:#183b52; letter-spacing:.05em; margin:0 50px; } .demo-tit p a:hover { color:#fff; text-decoration:underline; }
+	
+	.demo-tit h3 { font-size:24px; height:50px; line-height:50px; font-weight:bold; color:#ECF7FF; letter-spacing:.05em; }
+	.demo-tit h3 a { color:#ECF7FF; }.demo-tit h3 a:hover { color:#fff; text-decoration:underline; }
+	.demo-tit h3 span.a2 { font-size:12px; color:#0d79c0; padding:0 30px; }
+
+
+
+
+
+
+

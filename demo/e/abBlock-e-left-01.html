@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>abBlock左侧吸附导航滚动实例演示2</title>
+<meta name="keywords" content="abBlock,abBlock演示,格晒特效,格晒插件,jQuery插件" />
+<meta name="description" content="此例子为格晒特效插件abBlock不瞄点不定位滚动演示，默认不显示导航，左侧吸附导航滚动实例。兼容IE6+ Safari Opera Firefox Chrome 等大部分浏览器。格晒特效插件致力于提供网页特效兼容性最佳的免费解决方案ab.geshai.com。" />
+<link href="../css/abBlock-demo-common.css" rel="stylesheet" type="text/css" />
+<script src="../../js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="../../js/jquery.abBlock-v1.4.min.js"></script>
+</head>
+<body>
+<!-- 头部开始 -->
+<div style="width:880px; margin:auto;"><div style="text-align:center;padding:80px 0 60px 0;"><div class="logo z"><h2 style="color:#ebf7fe;font-size:28px;line-height:42px;font-weight:bold;font-style:italic;"><a href="http://ab.geshai.com/other-plus/abBlock/" title="abBlock v1.4" target="_blank">左侧吸附导航滚动演示</a></h2><p style="font-size:13px;font-style:italic;color:#ddf0fb;font-weight:100;">abBlock导航定位滚动插件 v1.4</p></div></div></div>
+<!-- 头部结束 -->
+
+
+
+
+<!-- ==============================  本效果 css 开始 ============================== -->
+<style type="text/css">
+* { margin:0; padding:0; }
+body { background:#0c91e8; color:#fff; font:12px/18px "microsoft yahei", "SimHei", "SimSun"; -webkit-text-size-adjust:100%;min-width:1200px;}
+ul,li { list-style:none; }
+p { word-wrap:break-word; }
+img { border:0; vertical-align:middle; }
+a { color:#eef7fe; text-decoration:none; }
+a:hover { color:#fff; text-decoration:none; }
+
+.abBlock-body { width:880px; margin: auto; }
+
+.abBlock-tit { left:0px; width:100px; background:#212121; border-radius:20px; display:none; overflow:hidden; }
+   .abBlock-tit ul { margin:auto; }
+      .abBlock-tit ul li { float:left; list-style:none; width:100px; height:45px; line-height:45px; text-align:center; }
+         .abBlock-tit ul li a { font-size:14px; font-style:italic; font-weight:500; color:#909ca4; text-decoration:none; display:block; }
+         .abBlock-tit ul li a.on { color:#fff; font-weight:700; background:#3dc878; }
+		 .abBlock-tit ul li a:hover { color:#fff; background:#4ad585; }
+.abBlock-tit-on { background:#212121; border-radius:20px; display: block; }
+
+.abBlock-content { width:880px; margin:auto; }
+   .abBlock-content .block { margin-top:30px; }
+      .abBlock-content .block h3 { font-size:16px; font-weight:500; color:#333; font-style:italic; line-height:200px; padding-left:30px; }
+	  .abBlock-content .block p { text-align:center; color:#777; font-size:16px; padding:0 30px; }
+      .abBlock-content .block .area { height:2400px; background:#fff; border-radius:50px; box-shadow: 0px 10px 30px 0px rgb(16 124 195); }
+      .on { background-color: red;}
+</style>
+<!-- ==============================  本效果 css 结束 ============================== -->
+
+<!-- HTML代码效果开始 -->
+
+<div class="abBlock-body">
+    <!-- //主导航 -->
+    <div class="abBlock-tit">
+        <ul>
+            <li><a href="javascript:;" class="on">项目一</a></li>
+            <li><a href="javascript:;">项目二</a></li>
+            <li><a href="javascript:;">项目三</a></li>
+            <li><a href="javascript:;">项目四</a></li>
+            <li><a href="javascript:;">项目五</a></li>
+            <li><a href="javascript:;">项目六</a></li>
+            <li><a href="javascript:;">项目七</a></li>
+            <li><a href="javascript:;">项目八</a></li>
+        </ul>
+    </div>
+
+    <!-- //内容板块 -->
+    <div class="abBlock-content">
+        <div class="block"><div class="area"><h3>内容层</h3><p>此例子为不瞄点不定位滚动演示，默认不显示导航，②左侧吸附导航滚动实例。</p></div></div>
+    </div>
+</div>
+
+<!-- HTML代码效果结束// -->
+
+<!-- js代码调用开始 -->
+<script language="javascript">
+  $(".abBlock-body").abBlock({
+    titContainer: ".abBlock-tit", /* 吸顶容器元素 */
+    onClass: "abBlock-tit-on", /* titContainer吸顶时的class样式名 */
+    offClass: "", /* titContainer吸顶前的class样式名 */
+    stickType: "left", /* 水平方向(默认=left): left=靠左, right=靠右 */
+    positionType: 2, /* 方位: 1=顶部, 2=垂直居中, 3=底部 */
+    offsetX: -130, /* X坐标偏移 */
+    offsetY: 0, /* Y坐标偏移 */
+    appoint: 120 /* 默认=false(不启用), 定点位置。可以为HTML元素(例如: #demo)，或滚动高度为(例如: 120)。 */
+  });
+</script>
+<!-- js代码调用结束 -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="demo-main">
+<div class="clear"></div><div class="h100"></div><div class="clear"></div>
+<div class="demo-tit"><h3><a href="http://ab.geshai.com/other-plus/abBlock/" target="_blank">演示首页</a><span class="a2">|</span><a href="../../" target="_blank">插件下载</a></h3></div>
+<div class="demo-text">
+    <h6>abBlock基于jquery实现的导航瞄点定位插件</h6>
+    <p>不设置导航瞄点定位，也能设置导航默认是否显示，也可设置上下左右的具体位置，也可以设置默认一种<br>样式或内容，滚动后变换一种样式或内容。无论怎么滑动网页，导航始终处于定位的具体位置。<br>兼容IE6+ Safari Opera Firefox Chrome等大部分浏览器。</p>
+</div>
+<div id="tbox2"><a id="gotop2" title="返回顶部" href="javascript:scroll(0,0);">Top</a></div>
+</div>
+</body>
+</html>

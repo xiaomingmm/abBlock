@@ -1,15 +1,14 @@
-# abBlock
 
-* abBlock-v1.4 (导航定位&吸顶)滚动插件
-* 官网: http://ab.geshai.com/other-plus/abBlock
-*
-* 有疑难问题可选择QQ群① 158544200 或QQ群② 790370978 进行反馈
-*
-* Copyright Carlo,Cloud
-*
-* 请尊重原创，保留头部版权
-* 在保留版权的前提下，可应用于个人或商业用途
-
+ * abBlock-v1.4 (导航定位&吸顶)滚动插件
+ * 官网: http://ab.geshai.com/other-plus/abBlock
+ *
+ * 有疑难问题可选择QQ群① 158544200 或QQ群② 790370978 进行反馈
+ *
+ * Copyright Carlo,Cloud
+ *
+ * 请尊重原创，保留头部版权
+ * 在保留版权的前提下，可应用于个人或商业用途
+ 
 -------------------------------------------------------------------------------
 
 
@@ -23,12 +22,12 @@
 使用说明以及注意事项如下：
 
 1、首先引用jQuery v1.8.3+版本 ( 更低版本能兼容到jQuery1.43推荐使用jQuery1.8.3+ )
-jQuery目录地址  js/jquery-1.8.3.min.js
+	jQuery目录地址  js/jquery-1.8.3.min.js
 
 2、引用abBlock
-插件目录地址如下
-js/abBlock-v1.4.js   开发版
-js/jquery.abBlock-v1.4.min.js   压缩迷你版（推荐使用）
+	插件目录地址如下
+	js/abBlock-v1.4.js   开发版
+	js/jquery.abBlock-v1.4.min.js   压缩迷你版（推荐使用）
 
 3、demo目录内为演示实例相关文件
 
