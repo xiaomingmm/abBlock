@@ -34,6 +34,7 @@
 			"rollType": 0, /* (滚动条滑动)吸顶时显示类型(结合 appoint 一起使用)。0=无。1=向下滑动不显示，向上滑动显示。2=向下滑动显示，向上滑动不显示。 */
 			"callback": null, /* 回调函数 */
 
+			"_init": false,
 			"_rd": "ab$1",
 			"_style": "#ab_$1_x",
 			"_topExp": "ab_$1_fixed",
@@ -390,6 +391,10 @@
 
 			// 默认css
 			if (this.isIE6()) {
+				// 解决ie6抖动
+				__titContainer.addClass(this._topExp);
+
+				// style
 				__styleArr.push("html{_text-overflow:ellipsis;/*background-image:url(about:blank);background-attachment:fixed;*/}");
 				__styleArr.push("." + this._onClass + "{position:absolute;bottom:auto;left:" + __positionTypeExp.left + "px !important;" + __yStyle + "}");
 				__styleArr.push("." + this._topExp + "{/*left:0px;*/" + __positionTypeExp.name + ":expression(eval(document.documentElement.scrollTop + " + __positionTypeExp.value + "));");
@@ -397,17 +402,15 @@
 				__styleArr.push("." + this._onClass + "{position:fixed;left:" + __positionTypeExp.left + "px !important;" + __yStyle + "}");
 			}
 
-			// style
-			$("body").append(
-				"<style type=\"text/css\" id=\"$1\">$2</style>"
-					.replace("$1", this._style.substring(1))
-					.replace("$2", __styleArr.join(""))
-			);
-
-			// 解决ie6抖动
-			if (this.isIE6()){
-				__titContainer.addClass(this._topExp);
+			// init? (这里同步兼容IE6只能remove)
+			if (this._init) {
+				$(this._style).remove();
 			}
+
+			// style
+			$("<style type=\"text/css\" id=\"$1\">$2</style>"
+				.replace("$1", this._style.substring(1))
+				.replace("$2", __styleArr.join(""))).appendTo("head");
 
 			// on class
 			if (false === this.onClass) {
@@ -510,6 +513,25 @@
 		};
 
 		/**
+		 * resize
+		 */
+		__opts.resize = function () {
+			var __that = this;
+			// listen `resize`
+			$(window).resize(function () {
+				/* position to attr */
+				__positionTypeExp = __that.posTypeToExp();
+
+				// createStyle
+				__that.createStyle();
+
+				// `titContainer` offset top
+				__titContainerInfo = __that.elInfo(__titContainer);
+				__titContainerInfo.oTop -= __that.scrollTop();
+			});
+		};
+
+		/**
 		 * defs init
 		 */
 		__opts.thatInit = function () {
@@ -544,6 +566,7 @@
 			// `titContainer` offset top
 			__titContainerInfo = this.elInfo(__titContainer);
 			__titContainerInfo.oTop -= this.scrollTop();
+			this._init = true;
 		};
 
 		/* current object init */
@@ -591,5 +614,8 @@
 
 		// init
 		__opts.init();
+
+		// resize
+		__opts.resize();
 	};
 })(jQuery);
