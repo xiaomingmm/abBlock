@@ -32,6 +32,7 @@
 			"titOnClass": "on", /* tit列表项当前索引class样式名 */
 			"speed": 250, /* 滚动过度动画毫秒(ms) */
 			"rollType": 0, /* (滚动条滑动)吸顶时显示类型(结合 appoint 一起使用)。0=无。1=向下滑动不显示，向上滑动显示。2=向下滑动显示，向上滑动不显示。 */
+			"backTop": false, /* 回到顶部(点击)事件绑定HTML元素 */
 			"callback": null, /* 回调函数 */
 
 			"_init": false,
@@ -154,6 +155,13 @@
 		};
 
 		/**
+		 * body
+		 */
+		__opts.elStop = function (__el) {
+			return $(__el || "html,body").stop(true);
+		};
+
+		/**
 		 * 返回指定的板块的参数值
 		 * @__i integer 指定的编号
 		 */
@@ -175,9 +183,9 @@
 		__opts.animate = function(__i) {
 			var __v = this.blockSet(__i);
 
-			// scroll animate
+			// scroll
 			$(this.scroll)
-				.stop(true, true)
+				.stop(true)
 				.animate({scrollTop: this.px(__v.top)}, this.speed, function () {
 					__opts.setIsClick(false);
 				});
@@ -360,6 +368,7 @@
 				__oriEvt = __evt.originalEvent;
 				__wheelDelta = (__oriEvt.wheelDelta && (__oriEvt.wheelDelta > 0 ? 1 : -1)) || (__oriEvt.detail && (__oriEvt.detail > 0 ? -1 : 1));
 
+				__that.elStop();
 				__that.wheelExp(__evt);
 			}).mousedown(function () {
 				__isMousewheel = false;
@@ -513,6 +522,20 @@
 		};
 
 		/**
+		 * (点击)回到顶部事件绑定
+		 */
+		__opts.toTop = function () {
+			if (!__backTop) {
+				return false;
+			}
+
+			// click
+			$(__backTop, __cntr).click(function () {
+				__opts.elStop().animate({scrollTop: 0}, __opts.speed);
+			});
+		};
+
+		/**
 		 * resize
 		 */
 		__opts.resize = function () {
@@ -551,6 +574,7 @@
 			if(!this.titIsOff() && this.hasLen(__tit)) {
 				// click
 				__tit.click(function(__e) {
+					__opts.elStop();
 					__opts.setIsClick(true);
 					__opts.animate(__tit.index(this));
 				});
@@ -576,7 +600,8 @@
 		var __cntr = $(this);
 		var __tit = $(__opts.tit, __cntr),
 			__titContainer = $(__opts.titContainer, __cntr),
-			__block = $(__opts.block, __cntr);
+			__block = $(__opts.block, __cntr),
+			__backTop = __opts.backTop;
 
 		/* titContainer on class */
 		var __onClass = __opts.onClass;
@@ -614,7 +639,8 @@
 
 		// init
 		__opts.init();
-
+		// back top
+		__opts.toTop();
 		// resize
 		__opts.resize();
 	};
