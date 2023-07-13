@@ -32,7 +32,6 @@
 			"titOnClass": "on", /* tit列表项当前索引class样式名 */
 			"speed": 250, /* 滚动过度动画毫秒(ms) */
 			"rollType": 0, /* (滚动条滑动)吸顶时显示类型(结合 appoint 一起使用)。0=无。1=向下滑动不显示，向上滑动显示。2=向下滑动显示，向上滑动不显示。 */
-			"backTop": false, /* 回到顶部(点击)事件绑定HTML元素 */
 			"callback": null, /* 回调函数 */
 
 			"_init": false,
@@ -48,7 +47,7 @@
 		 * @__ind integer 当前tit|resTit之项目编号
 		 * @__st  integer 滚动条动态值
 		 */
-		__opts.callbackFunc = function(__ind, __st) {
+		__opts.cbFn = function(__ind, __st) {
 			if($.isFunction(this.callback)) {
 				this.callback(__ind, __st);
 			}
@@ -127,6 +126,13 @@
 		};
 
 		/**
+		 * Offset top
+		 */
+		__opts.elTop = function (__o) {
+			return (this.hasLen(__o) ? __o.offset().top : 0);
+		};
+
+		/**
 		 * 获取参数top位置
 		 */
 		__opts.valueTop = function (__val) {
@@ -140,8 +146,9 @@
 			}
 
 			// 以元素位置为点位
-			var __o = $(__val);
-			return (this.hasLen(__o) ? __o.offset().top : 0);
+			/*var __o = $(__val);
+			return (this.hasLen(__o) ? __o.offset().top : 0);*/
+			return this.elTop($(__val));
 		};
 
 		/**
@@ -149,8 +156,8 @@
 		 */
 		__opts.elInfo = function (__el) {
 			return {
-				"oTop": __el.offset().top,
-				"oHeight": __el.outerHeight()
+				"oTop": /*__el.offset().top*/this.elTop(__el),
+				"oHeight": this.hasLen(__el) ? __el.outerHeight(true) : 0
 			};
 		};
 
@@ -275,7 +282,7 @@
 			__history_ST = __st;
 
 			// callback
-			this.callbackFunc(__index, __history_ST);
+			this.cbFn(__index, __history_ST);
 		};
 
 		/**
@@ -522,20 +529,6 @@
 		};
 
 		/**
-		 * (点击)回到顶部事件绑定
-		 */
-		__opts.toTop = function () {
-			if (!__backTop) {
-				return false;
-			}
-
-			// click
-			$(__backTop, __cntr).click(function () {
-				__opts.elStop().animate({scrollTop: 0}, __opts.speed);
-			});
-		};
-
-		/**
 		 * resize
 		 */
 		__opts.resize = function () {
@@ -559,6 +552,7 @@
 		 */
 		__opts.thatInit = function () {
 			var __rdStr = this.randStr();
+
 			// vars
 			this._rd = this._rd.replace("$1", __rdStr);
 			this._style = this._style.replace("$1", __rdStr);
@@ -600,47 +594,46 @@
 		var __cntr = $(this);
 		var __tit = $(__opts.tit, __cntr),
 			__titContainer = $(__opts.titContainer, __cntr),
-			__block = $(__opts.block, __cntr),
-			__backTop = __opts.backTop;
+			__block = $(__opts.block, __cntr);
 
 		/* titContainer on class */
-		var __onClass = __opts.onClass;
-		/* titContainer off class */
-		var __offClass = __opts.offClass;
-
-		/* tit on class */
-		var __titOnClass = __opts.titOnClass;
+		var __onClass = __opts.onClass,
+			/* titContainer off class */
+			__offClass = __opts.offClass,
+			/* tit on class */
+			__titOnClass = __opts.titOnClass;
 
 		/* position type */
-		var __positionType = __opts.positionType;
-		/* stick type */
-		var __stickType = __opts.stickType;
-		/* offsetY */
-		var __positionOffsetY = parseFloat(__opts.offsetY);
-		/* positionOffsetX */
-		var __positionOffsetX = parseFloat(__opts.offsetX);
-		/* early */
-		var __early = parseFloat(__opts.early);
+		var __positionType = __opts.positionType,
+			/* stick type */
+			__stickType = __opts.stickType,
+			/* offsetY */
+			__positionOffsetY = parseFloat(__opts.offsetY),
+			/* positionOffsetX */
+			__positionOffsetX = parseFloat(__opts.offsetX),
+			/* early */
+			__early = parseFloat(__opts.early);
 
 		/* 当前索引,历史索引 */
-		var __index = 0, __indexOld = -1, __isClick = false, __isIe6 = __opts.isIE6(), __wheelDelta = 0, __titContainerInfo = {};
+		var __index = 0,
+			__indexOld = -1,
+			__isClick = false,
+			__isIe6 = __opts.isIE6(),
+			__wheelDelta = 0,
+			__titContainerInfo = {};
 
 		/* 历史滚动参数值 */
-		var __history_ST = __opts.scrollTop();
-
-		/* 点位位置 */
-		var __appointTop = __opts.valueTop(__opts.appoint);
-
-		/* 终点位置 */
-		var __placeTop = __opts.valueTop(__opts.place);
+		var __history_ST = __opts.scrollTop(),
+			/* 点位位置 */
+			__appointTop = __opts.valueTop(__opts.appoint),
+			/* 终点位置 */
+			__placeTop = __opts.valueTop(__opts.place);
 
 		/* position to attr */
 		var __positionTypeExp = __opts.posTypeToExp();
 
 		// init
 		__opts.init();
-		// back top
-		__opts.toTop();
 		// resize
 		__opts.resize();
 	};
